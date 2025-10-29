@@ -8,7 +8,8 @@ pA=0; pB=0; pC=0; pT=0; total=0; k=0; A=0; B=0; C=0
 ###variables para caso 2
 a=0; b=0 ;  c=0  ; D=0; x1Real=0; x2Real=0  ;x1Imag=0j ; x2Imag=0j
 
-###varaibles para caso 3
+###varaibles para caso 7
+ListaGolbal=["MATEMATICA APLICADA","SJL","1ro",7.5]
 
 
 while(op!=40):
@@ -19,9 +20,9 @@ while(op!=40):
     print("[3] USO DE LISTAS")
     print("[4]USO DE TUPLAS")
     print("[5]USO DE DICCIONARIO")
-    print("[6]")
-    print("[7]")
-    print("[8]")
+    print("[6]USO DE FOR")
+    print("[7]USO DE FOR con listas, tuplas etc")
+    print("[8]verificador de numero primos")
     print("[9]")
     print("[10]")
     print("[11]")
@@ -68,6 +69,7 @@ while(op!=40):
                 x2Imag=(-b - D**(1/2) )/(2*a)
                 print("x1= {:.2f}".format(x1Imag))
                 print("x2= {:.2f}".format(x2Imag))
+            print("FIN DEL PROGAMA")    
         
         case 3:
             print("[3]USO DE LISTAS")
@@ -141,9 +143,85 @@ while(op!=40):
             print("lista ordenada aplicando sort:",LAlum)
             
             
+        case 4:
+            print("[4]USO DE TUPLAS")
+            persona=("Sebastian","Argentina","Bs As",35)
+            LAlum = ("Sebas","Alejandor","Johan") # alumnos de cibertec
+            marcas=("hyundai","toyota","ford")
+            print("tupla:",persona)
+            print("longitud:",len(persona))
+            print("posicion de elementos Peru:",persona.index("Argentina"))
+            print("#veces que aparece Lima=", persona.count("Buenos Aires"))
             
+            print("LISTA DE TUPLAS")
+            print("."*20)
+            print("tuplas1:",LAlum)
+            print("tupla2:",marcas)
+            tupla=(LAlum,marcas)
+            print("lista de tuplas combinadas:",tupla)
 
+        case 5:
+            print("[5] USO DE DICCIONARIO")
+            MisDatos={
+                        "nombre":"Hairo",
+                        "apellido":"Tarmeño",
+                        "ocupacion":"alumno",
+                        "edad":23,
+                        "honestidad":True,
+                        "estatura":1.70,
+                        "padres":("Geraldine","Wyllian")
+                }
+            print("diccionario de mis datos personales:\n",MisDatos)    
+
+        case 6:
+            print("[6] USO DE FOR")
+            suma = 0
+            print("suma de los primeros numeros naturales:\n")
+            num=int(input("Ingrese cantidad de numeros"))# 1+2+3+4...+num
+            for i in range(num):
+              i = i+1 #para aumentar una unidad mas ya que comienza de 0
+              suma = suma+i
+            sumafinal = suma
+            print("la suma de los primeros",num,"naturales=",sumafinal)
+
+            print("la suma de numeros naturales consecutivos entre num1 y num2:\n")
+            num1=int(input("ingrese numero inicial:"))
+            num2=int(input("ingrese numer final:"))
+            for i in range(num1, num2 + 1):
+                suma= suma+i
+            print("la suma total es  =",suma)
+
+        case 7:
+            print("[7] USo de for con listas, tuplas etc")
+            print("Reporte de elements de la lista")
+            indice = 0
+            for i in ListaGolbal: # i es la variable que toma el control de la lista 
+                print("Elemento nro",indice,"=",i)
+                indice = indice+1
             
+            print("\nReporte de elementos de la lista mediante for con enumerate")
+            for inidice, i in enumerate(ListaGolbal):
+                print("Elemento nro",indice,"=",i)
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            persona=("Sebastian","Argentina","Bs As",35)
+            print(persona.index(35))
             
             
             
