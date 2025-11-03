@@ -1,5 +1,24 @@
 #MENU de opciones para uso de listas, tuplas, diccionarios
 #apliacione a diversos ejercicios
+#definicion de METODOS (funcione o procedimentos)
+def imprimir(texto,listax):
+    for indice, i in enumerate(listax):
+        print("El elemento", indice,"de",texto,"es:",i)
+#####
+def Fserie1(numero):
+    Rpta=0
+    x=3; i=1
+    while(x<=numero):
+        Rpta = Rpta + (x-1)/(x)
+        print("Iteracion",i,":M=",Rpta)
+        x=x+1
+        i=i+1
+    return Rpta
+#####
+def calcular_venta(p_compra, g_porcentaje):
+    
+    p_venta = p_compra * (1 + g_porcentaje / 100)
+    return p_venta
 
 #definiiocn de variables
 op = 0 #op(designa la opcion elegida en el menu)
@@ -9,7 +28,9 @@ pA=0; pB=0; pC=0; pT=0; total=0; k=0; A=0; B=0; C=0
 a=0; b=0 ;  c=0  ; D=0; x1Real=0; x2Real=0  ;x1Imag=0j ; x2Imag=0j
 
 ###varaibles para caso 7
-ListaGolbal=["MATEMATICA APLICADA","SJL","1ro",7.5]
+ListaGlobal=["MATEMATICA APLICADA","SJL","1ro",7.5]
+
+ListaGlobal1=["ingles","comunicacion","metodoligas",3,6]
 
 
 while(op!=40):
@@ -23,12 +44,12 @@ while(op!=40):
     print("[6]USO DE FOR")
     print("[7]USO DE FOR con listas, tuplas etc")
     print("[8]verificador de numero primos")
-    print("[9]")
-    print("[10]")
-    print("[11]")
-    print("[12]")
-    print("[13]")
-    print("[14]")
+    print("[9]USO DE FOR con metodos")
+    print("[10]USO DE WHILE para resolver una serie ")
+    print("[11]Dados un valor de N que ubduca el dominador final. Halle M")
+    print("[12]problema de compra y venta mediante metdo (Funcion)")
+    print("[13]ORDENACION DE LISTAS")
+    print("[14]CONVERSION DE CADENA A LISTA Y VICIVERSA")
     print("[15]")
     print("[16]")
     print("[17]")
@@ -195,58 +216,106 @@ while(op!=40):
             print("[7] USo de for con listas, tuplas etc")
             print("Reporte de elements de la lista")
             indice = 0
-            for i in ListaGolbal: # i es la variable que toma el control de la lista 
+            for i in ListaGlobal: # i es la variable que toma el control de la lista 
                 print("Elemento nro",indice,"=",i)
                 indice = indice+1
             
             print("\nReporte de elementos de la lista mediante for con enumerate")
-            for inidice, i in enumerate(ListaGolbal):
+            for inidice, i in enumerate(ListaGlobal):
                 print("Elemento nro",indice,"=",i)
+        case 8:
+            print("[8]verificador de numero primos")
+            print("numero primos")
+            primos = 2, 3, 5, 7, 11, 13, 17, 19, 23
+            print("91 sera primo cuando sea")
+            for i in range(2,9+1):
+                if (91%i) == 0: # Comprueba si 91 es divisible por i
+                    print(i, "divide a 91")
+                    break
+                else:
+                    print(i, "no divide a 91")
+                    
+
+
+
+        case 9:
+            print("[9]USO DE FOR con metodos")
+            print("salida de listaglobal1 mediante metodo(procedimiento) inprimir:\n")
+            imprimir("Lista de datos",ListaGlobal1)
+            print("fin del metodo_")
 
 
   
+        case 10:
+            print("[10]USO DE WHILE para resolver una serie ")
+            print("Dados un valor de N que ubduca el dominador final. Halle M ")
+            print(" M=2/3 + 3/4 + 4/5 +...")
+            print("Ejem N=6--> 2/3 + 3/4 + 4/5 + 5/6 ")
+            print("\nEjem: N=4--> 2/3 + 3/4")
+            N = int( input("ingrese el valor fr dominador final N:"))
+
+            M=0 ; x=3 ; i=1
+            while(x<=N):
+              M = M+(x+1)/(x)
+              print("\nIteracion",i,":M=",M)
+              x=x+1
+              i=i+1
+
+            print("\nmfinal=", round(M,2))
+        
+        case 11:
+            print("Dados un valor de N que ubduca el dominador final. Halle M ")
+            print(" M=2/3 + 3/4 + 4/5 +...")
+            print("Ejem N=6--> 2/3 + 3/4 + 4/5 + 5/6 ")
+            print("\nEjem: N=4--> 2/3 + 3/4")
+            N = int( input("ingrese el valor fr dominador final N:"))
+            M=0
+            M=Fserie1(N)
+            
+            print("\nmfinal=", round(M,2))
+        
+        
+        
+        case 12:
+            print("[12]problema de compra y venta mediante metodo funcio")
+            print("Dado un precio de compar y venta una ganancai en %. Halle el precio de venta")
+            p_compra = float(input("Ingrese el precio de compra: "))
+            g_porcentaje = float(input("Ingrese la ganancia en %: "))
+            p_venta = calcular_venta(p_compra, g_porcentaje)
+            ###formula de precio de  
+            print("El precio de venta es:",round(p_venta))
+
+        case 13:
+            print("[13]ORDENACION DE LISTAS")
+            ListaNotas=[14,16,10,13]
+            print("Lista de notas INICICAL:\n")
+            print(ListaNotas)
+            ListaOrdenada=sorted(ListaNotas)
+            print("\nlista de notas ordenada en una nueva lista\n")
+            imprimir("Notas ordenada",ListaOrdenada)
+            print("\nLista de notas ordenada e lista INICIAL:\n")
+            ListaNotas.sort()
+            imprimir("Lista inicial ordenada,",ListaNotas)
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-            persona=("Sebastian","Argentina","Bs As",35)
-            print(persona.index(35))
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-
-      
-            
+        case 14:
+            print
+            oracion=str(input("Ingrese una oracion:"))
+            caracter=str(input("ingrese el caracter delimitador de la lista:"))
+            Lista3=oracion.split(caracter) 
+            print("\ncadena original:",oracion)
+            print("\nlistagenerada:",Lista3)
+            print("\n[14]conversion de lista a cadena\n")
+            caracter=str(input("Ingrese el caracter delimitador de la oracion"))
+            cadena2=caracter.join(Lista3)
+            print("\nCadena generada:",cadena2)         
+        
+        
+        
+        
         case _ :
             print("opcion no valida")
 
