@@ -1,6 +1,11 @@
 #MENU de opciones para uso de listas, tuplas, diccionarios
 #apliacione a diversos ejercicios
 #definicion de METODOS (funcione o procedimentos)
+
+import Modulo1
+import numpy as np
+
+
 def imprimir(texto,listax):
     for indice, i in enumerate(listax):
         print("El elemento", indice,"de",texto,"es:",i)
@@ -20,6 +25,32 @@ def calcular_venta(p_compra, g_porcentaje):
     p_venta = p_compra * (1 + g_porcentaje / 100)
     return p_venta
 
+def Busqueda_Lienal(listax,valor):
+    Rpta=-1 # no se pone 0 porque es una posicion valida, -1 indica que no se envontro el valor 
+    pos=0
+    for z in listax:
+        if z == valor:
+            Rpta=pos
+            return Rpta #cuando se encuentra el valor y termina el metodo 
+        pos=pos+1
+    return Rpta # cuando no se encuentra el valor 
+###################
+def Busqueda_Binaria(lista,elemento):
+    izq=0
+    der = len(lista) -1
+    print("LONGITUD=",len(lista))
+    while izq <= der:
+        medio =int((izq+der)/2)
+        print("DEBUG: ","izq: ",izq,"der: ",der,"medio: ",medio)
+        if lista[medio]==elemento:
+            return medio
+        else:
+            if lista[medio]>elemento:
+                der=medio-1
+            else:
+                izq = medio+1
+    return(-1)
+######################
 #definiiocn de variables
 op = 0 #op(designa la opcion elegida en el menu)
 ###variables para caso 1
@@ -53,6 +84,7 @@ while(op!=40):
     print("[15]")
     print("[16]")
     print("[17]")
+    print("[17]USO DE map para convertir una lista en sus cuadrado mediante MODULO1.py")
     print("[40]SALIR")
 
     op= float(input("ingrese opcion"))
@@ -312,6 +344,84 @@ while(op!=40):
             caracter=str(input("Ingrese el caracter delimitador de la oracion"))
             cadena2=caracter.join(Lista3)
             print("\nCadena generada:",cadena2)         
+        
+
+        case 15:
+            print("[15]BUSQUEDA SECUENCIAL O LINEAL EN LISTA")
+            ListaNotas=[14,16,10,13,12,20,18]
+            nota=int(input("ingrese la nota a buscar"))
+            posicion = Busqueda_Lienal(ListaNotas,nota)
+            if(posicion!=-1):
+                print("la nota buscada:", nota,"es la nota de nro",posicion)
+            else:
+                print("la nota buscada:",nota,"no se encuentra en la Lista de notas")
+
+        case 16:
+            print("[]")
+            print()
+            lista=input("ingrese una lista ordenada separada por comas:")
+            lista=lista.split(",")
+            lista=list(map(int,lista)) # map realiza una operrcion de la lista a cada elemento de la lista 
+            # list es un metodo que convierte el contenido a una lista
+            #usar tuple()para convertir a tupla
+            print("Lista ordenada:",lista)
+            
+            lista !=[[]]
+            x= int(input("ingrese el valor buscando:"))
+            resultado = Busqueda_Binaria(lista,x)
+            print("El valor buscado esta en la posicion:",resultado)
+            
+           
+            
+        case 17:
+            print("[17]")
+            ListaNotas = [8,12,15,13]
+            valor=15
+            print("\nBUSQUEDA CON INDEX")
+            print("ListaNotas:",ListaNotas)
+            posicion=Busqueda_con_index(ListaNotas,valor)
+            print("elemento ")
+
+            print("metodo de busqueda con index")
+            def Busqueda_con_index(lista,elemento):
+                if elemento in lista:
+                    return (lista.index(elemento))
+                else:
+                    return(-1)
+                                   
+        case 18:
+            print("[18]")       
+            # conjunto de numeros
+            numeros=[3,6,9,12]
+            lista = list(map(Modulo1.potencia,numeros))
+            print("Lista de cuadrados",lista)
+        
+
+        case 19:
+            vector1= np.array([1,2,3])
+            vector2= np.array([3,4,-5])
+            print("\nvector1=",vector1)
+            print("\nvector2=",vector2)
+
+            matriz1=np.array( [ [1,2] , [3,4]  ])
+            matriz2=np.array( [ [3,0] , [1,5]  ])
+            print("\nMatriz1=\n",matriz1)
+            print("\nMatriz2=\n",matriz2)
+
+            print("OPERACIONES ARITMETICAS CON MATRICES")
+            print("vector1 - 2:", vector1 -2)
+            print("vector1 *1/2:",vector2 *(1/2))
+            print("Matriz1 + 5:",matriz1 +5)
+            print("Matriz1 *2:",matriz1 *2)
+            print("raiz(matriz):", np.sqrt(matriz1))
+            print("matriz1 +matriz2:",matriz1 + matriz2)
+            print("matriz1 * matriz2:",matriz1 * matriz2) #multiplicacion escalar 
+            print("[matriz] * [matriz2]:",np.dot(matriz1,matriz2)) #multiplicacion matricial 
+        
+        
+        
+        
+        
         
         
         
