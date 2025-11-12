@@ -4,6 +4,9 @@
 
 import Modulo1
 import numpy as np
+import statistics as stat
+import matplotlib.pyplot as plt
+import pandas as pd
 
 
 def imprimir(texto,listax):
@@ -85,6 +88,8 @@ while(op!=40):
     print("[16]")
     print("[17]")
     print("[17]USO DE map para convertir una lista en sus cuadrado mediante MODULO1.py")
+    print("[28]grafocp de funciones valor absoluto")
+    print("[32]")
     print("[40]SALIR")
 
     op= float(input("ingrese opcion"))
@@ -418,14 +423,254 @@ while(op!=40):
             print("matriz1 * matriz2:",matriz1 * matriz2) #multiplicacion escalar 
             print("[matriz] * [matriz2]:",np.dot(matriz1,matriz2)) #multiplicacion matricial 
         
+        case 20:
+            numeros = [20, 18, 13, 14, 17]
+            lista_ordenada = Modulo1.ordenar_lista(numeros)
+
+            print("Lista original:", numeros)
+            print("Lista ordenada:", lista_ordenada)
+            
+            
+        case 21:
+            print("\n[21]Dado un array unidimensional hallar su media aritmética usando modulo1.py")
+            #array unidimensional
+            mi_array = np.array([10, 20, 30, 40, 50])
+
+            # Usar la función de modulo1.py para calcular la media
+            media_aritmetica = Modulo1.calcular_media_array(mi_array)
+
+            print(f"El array unidimensional es: {mi_array}")
+            print(f"La media aritmética del array es: {media_aritmetica}")
         
+        case 22:
+            print
+
+
+
+
+
+
+        case 23:
+            print("[23]Uso de matrices especiales")
+            print("\nGenerar un array con valores automaticos")
+
+            print("matriz1 de ceros:\n", np.zeros((2,3)))
+            print("matriz1 de unos:\n",np.ones((4,2)))
+            print("vector desde 0 a 1 de en 2:\n", np.arange(0,10,2))
+            print("vector desde 0 a 1 separado en 5 partes:\n", np.linspace(0,1,5))
+            print("definir en vector de los numeros consecutivos que aumenten de 3 en 3 desde 9 hasta 21 inclusive.",
+                  "luego sumarlo con otro vector que contiene 5 elementos particionados  del rango [4 a 6]",
+                  "mostrar lo 3 vectores")
+            
+            print("vectores des 9 a 21 de en 3:\n", np.arange(9,22,3))
+            vector_a= list ((9,22,3))
+            print("vectores separado en 5 elementos del rango [4 a 6]:", np.linspace(0,4,6))
+            vector_b= list ((4,6,5))
+
+            print("suma de vectores") 
+            vector_a = np.arange(9,22,3)
+            vector_b = np.linspace(4,6,5)
+
+            RPTA = vector_a + vector_b
+
+            print("resulatado final")
+            print("Vector A",vector_a)
+            print("Vector B", vector_b)
+            print("RPTA:", RPTA)
+
+        case 24:
+            print("[]")
+            vector_a= np.array([1,2,3,6,9,13,14,18,20,20])
+            print("ARRAY:",vector_a)
+            media=np.mean(vector_a) ;print("\nmedia=",media)
+            mediana=np.median(vector_a) ; print("\nmediana=",mediana)
+            #moda= np.(vector_a) ; print("\nmoda="mod)
+            desv=np.std(vector_a) ; print("\nDesviacion estandar=",desv)
+            percentil20=np.percentile(vector_a,20) ; print ("\nPrecentil20=",percentil20)
+            varianza=np.var(vector_a) ; print("Varianza=",varianza)
+            print("¿cual es la nota maxima del primer 60(%) de alunmo1?", np.percentile(vector_a,60))
+            print("¿cual es la nota maxiam del primer 50(%) del alumno?",np.percentile(vector_a,50))
         
+        case 25:
+            print("[25]Arreglo de 100 numeros alaeatorios entre 0 y 1 y hacer operaciones")
+            arreglo = np.random.rand(100)
+            print( "Array original",arreglo)
+            print("Array redeondeado",np.round(arreglo,2))
+            vector_a = np.random.randint(1,20,10)
+            print("vector_a:",vector_a)
+            print("vecto1 de forma ordenda de 10 en 10:\n")
+
+            for i,valor in enumerate(vector_a):
+                print([i],"=",valor)
+                if (i% 10==0):
+                    print("\n")
+
+            #Hallar la media, medaina, desviacon, moda, la nota del quinto suerior
+            print("media=",np.mean(vector_a))
+            print("mediana=",np.median(vector_a))
+            print("desviacion estandar=",np.round(np.std(vector_a)))
+            print("moda=", stat.mode(vector_a))
+            print("nota media de quinto superior:", np.percentile(vector_a,80))
+
+
+
+        case 26:
+            print("[26]Matriz de 16 numeros aleatorios enteros y hacer operaciones")
+            matrizAl =np.random.randint(1,10,(4,4))# guarada 16 valores en una matriz de 4x4
+            print("Matriz:",matrizAl)
+            print("identificar el mayor de cada columna")
+            mayor_por_columna = np.amax(matrizAl, axis=0)
+            print("mayor de cada columna:", mayor_por_columna)
+            
+        case 27:
+            print("[27]Uso de matplotlib. grafico de funciones matematicas")
+            print("\ grafico den funcion seno(x)")
+            print("\ngrafica funcon seno\n")
+            x = np.linspace(-20,20,10000)
+            y = np.sin(x) #y es un array que contiene el seno delos valores de x
+            plt.plot(x,y,label= 'seno', color="green")# genero la grafica internmente
+            plt.title("graafico de sen(x)")
+            plt.xlabel("eje x")
+            plt.ylabel("eje y")
+            plt.legend()
+            plt.grid(True)
+            plt.show()
         
+        case 28:
+            print("[28]uso de matplotlib. grafico de funciones valor absoluto en [-10,20]")
+            x = np.linspace(-10,20,100)
+            y = np.abs(x) #y es un array que contiene el seno delos valores de x
+            plt.plot(x,y,label= 'seno', color="green")# genera la grafica internamente
+            #plt.scatter(x,y, color='red',s=10) #puntos de la funcion, s= tamaño del punto 
+            plt.title("graafico de sen(x)")
+            plt.xlabel("eje x")
+            plt.ylabel("eje y")
+            plt.scatter(x,y, color='black',s=10)
+            plt.axhline(5,color='green')
+            plt.axvline(3,color='blue')
+            plt.legend()
+            plt.grid(True)
+            plt.show()
         
+        case 29:
+            print("[29]uso de matplotlib. grafico de varias funciones en un solo plano")
+            x = np.linspace(0, 2*np.pi,100)
+            plt.plot(x, np.sin(x), label='seno')
+            plt.plot(x, np.cos(x), label='coseno')
+            plt.title("seno y coseno")
+            plt.xlabel("Angulo [rad]")
+            plt.ylabel("valor")
+            plt.legend()
+            plt.grid(True)
+            plt.show()
         
+        case 30:
+            print()
+            plt.plot([1,6,8,9])
+            plt.show()
+            
+            #############
+        case 31:
+            print("\n[31]Grafio de seuencia de puntos")
+            
+            fig, ax = plt.subplots()
+            
+            x=np.array([0,2,4,6,8,10])
+            y=np.array([1,2,4,7,8,9])
+           
+            ax.scatter(x,y, s=100, color='blue', alpha=0.3)
+            plt.plot(x,y,label="Grafico de puntos")
+            plt.show()
         
-        
-        
+        case 32:
+            print("[32]Mostrar dos figuras a la vez en dieferentes palnos ")
+            x= np.linspace(0,10,100)
+            y1=np.sin(x)
+            y2=np.cos(x)
+            
+            #primera figura
+            plt.figure(1)
+            plt.plot(x,y1, label='seno', color='blue')
+            plt.title("Figura 1 :seno")
+            plt.legend()
+            plt.grid(True)
+            plt.show
+            
+            #segunda figura
+            plt.figure(2)
+            plt.plot(x,y2, label='coseno', color='green')
+            plt.title("figura 2:coseno")
+            plt.legend()
+            plt.grid(True)
+            plt.show()
+            
+        case 33:
+            print("grafico de cualquier funcion matematica ")
+            
+           # Crear un conjunto de valores de x
+            x = np.linspace(-10, 10, 400)  # desde -10 hasta 10, con 400 puntos
+            y = Modulo1.f1(x)  # calcular los valores de y
+
+            # Graficar
+            plt.figure(figsize=(8, 5))
+            plt.plot(x, y, label='f(x) = 2x³ - 4x² + x - 5', color='blue')
+            plt.axhline(0, color='black', linewidth=0.5)  # eje X
+            plt.axvline(0, color='black', linewidth=0.5)  # eje Y
+            plt.title('Gráfica de una función polinómica')
+            plt.xlabel('x')
+            plt.ylabel('f(x)')
+            plt.legend()
+            plt.grid(True)
+            plt.show() 
+                    
+        case 34:
+            print("[34]")
+            
+            #lista de datos 
+            Datos =[12, 15, 13, 16, 15, 14, 14, 16, 17, 18, 16, 19, 21, 22, 21, 20, 18]
+            
+            #crear el histograma
+            frecuencia,limites,_= plt.hist(Datos,bins=8, color='skyblue', edgecolor='black')
+            plt.xticks(limites)#limite es un array que almacena los limites de os intervalos 
+            #plt.yticks(frecuencias) #frecuencia es array que almacena las frecuencias 
+            
+            #Añadir titulos y etiquetas
+            plt.title('histograma de datos')
+            plt.xlabel('valor')
+            plt.ylabel('frecuencia')
+            plt.grid(True)
+            plt.show()
+            
+            
+        case 35:
+            print("[35]uso de matplotlib. Grafico de distrbucion normal")
+            # Generar datos simulados (1000 números con distribución normal)
+            datos = np.random.normal(loc=0, scale=1, size=1000)
+
+            # Crear histograma
+            plt.hist(datos, bins=30, color='green', edgecolor='black')
+            plt.title('Histograma de distribución normal')
+            plt.xlabel('Valor')
+            plt.ylabel('Frecuencia')
+            plt.grid(True)
+            plt.show()
+            
+            
+        case 36:
+            print("[36]uso de pandas")
+            
+            #crear un DataFrame
+            data={'Nombre':['Ana','Luis','Maria'],
+                  'Edad':[23,35,29]}
+            
+            df = pd.DataFrame(data)
+            
+            #Mostrar
+            print(df)
+            
+            
+            
+            
         case _ :
             print("opcion no valida")
 
