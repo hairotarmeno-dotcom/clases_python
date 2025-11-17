@@ -658,19 +658,260 @@ while(op!=40):
             
         case 36:
             print("[36]uso de pandas")
+            print("LEE DATAFREME CON PANDAS DESDE UN DICCIONARIO")
             
             #crear un DataFrame
-            data={'Nombre':['Ana','Luis','Maria'],
-                  'Edad':[23,35,29]}
+            data={'Nombre':['Ana','Luis','Maria','Samir','Ahirton'],
+                  'Edad':[23,35,29,25,24],
+                  'Direccion':['MzN10','MzM4','MzJ7','MzP8','MzR6'],
+                  }
             
             df = pd.DataFrame(data)
             
             #Mostrar
             print(df)
+            print("\nLEER DATFRAME CON PANDAS desde una lista")
+            data=(['Hugo',27] , ['Paco',25] , ['Luis',30])
+            df=pd.DataFrame(data,columns=["Nombre", "Edad"])
             
+            print(df)
+            #######
             
+            print("\nLEER DATAFRAME CON PANDAS desde un array")
+            data=np.array([['Hugo',27] , ['Paco',25] , ['Luis',30]])
+            df=pd.DataFrame(data,columns=['Nombre','Edad'])
+            print(df)
+            ########
             
+            print("\nLEER DETAFRAME CON PANDAS desde varis listas independientes")
+            Nombres=['Hugo','Paco','Luis']
+            Edades=[15,25,36]
+            Alturas=[1.65,1.56,1.80]
+            df=pd.DataFrame(list(zip(Nombres,Edades,Alturas)),columns=["Nombre","Edad","Alturas"])
+            ### zip juntas varias lista; list crea una nueva lista a partir de zip
+            print(df)
+            #####
             
+            print("\nLEER DETAFRAME CON PANDAS desde varis listas independientes")
+            Nombres=np.array(['Hugo','Paco','Luis'])
+            Edades=np.array([15,25,36])
+            Alturas=np.array([1.65,1.56,1.80])
+            
+            df=pd.DataFrame(np.column_stack ([Nombres,Edades,Alturas]) , columns=["Nombre","Edad","Alturas"])
+            print(df)
+    
+        case 37:
+            print
+              # Leer archivo
+            df = pd.read_excel('DATA1.xlsx')
+
+            # Imprimir todo
+            print("\nIMPRESION mediante metodo head\n")
+            print(df.head())  # considera un maximo de 5 registros
+
+            # Imprimir nombre
+            print("\nIMPRESION DE SOLO LA COLUMNA NOMBRE\n")
+            print(df['NOMBRE'])
+
+            # Imprimir nombre y edad
+            print("\nIMPRESION DE COLUMNA nombre y edad\n")
+            print(df[['NOMBRE', 'EDAD']])
+
+            # Imprimir todo
+            print("\nIMPRESION DE TODA LA TABLA\n")
+            print(df[['NOMBRE', 'EDAD', 'APELLIDO_P', 'APELLIDO_M', 'ALTURA']])
+            
+            #imprimir todo en bloque
+            print("\nIMPRESION DE TODA LA TABLA con tostring\n")
+            print(df.to_string())
+                        
+            #imprimir todo mediante un for 
+            print("\nIMPRESION DE TODA LA TABLA como una matriz")
+            
+            for valor in df.values:
+                print(valor)
+            ##################
+            
+            print("\nIMPRESION DE TODA LA TABLA fila por fila")
+            for indice,valor in df.iterrows():
+                print("fila:",indice,"=",valor.NOMBRE,valor.APELLIDO_P,valor.APELLIDO_M,valor.EDAD,valor.ALTURA)
+            #######################
+            
+            print("IMPRESION DE TODA LA TABLA tupla por tupla")
+            for valor in df.iterrows():
+                print(valor)
+        
+            #########
+            print("IMPRESION DE TODA LA TABLA tupla por tupla resumido sin encabezado")
+            for valor in df.itertuples():
+                print("NOMBRE:",valor.NOMBRE,"\t","Apellido_p",valor.APELLIDO_P,"\t",
+                      "Apellido_M",valor.APELLIDO_M,"\t","Edad:",valor.EDAD,"\t","Altura",valor.ALTURA)
+                
+            
+        case 38:
+            print("[38]MANIPULACION DE EXCEL MEDIANTE ARRAYS")   
+            # Leer archivo
+            df = pd.read_excel('DATA1.xlsx')
+
+            # convertir una columna en un array
+            print("\nCaptura de la columna nombre en un array unidimensional:\n")
+            array_nombre = df['NOMBRE'].to_numpy()
+
+            print(array_nombre)
+            print("Elemento 2=",array_nombre[2])
+
+            # convertir dos columna en un array bidimensional
+            print("\nCaptura de la columna nombre en un array bidimensional:\n")
+            matriz_nombre_edad = df[["NOMBRE", "EDAD"]].to_numpy()
+
+            print(matriz_nombre_edad)
+            print("Elemento edad[2][1]=",matriz_nombre_edad[2][1])
+    
+        case 39:
+            print("\n[39] METODOS MATEMATICOS Y GRAFICOS A ARCHIVO EXCEL\n")
+
+            # Leer el archivo de Excel
+            df = pd.read_excel('DATA1.xlsx')
+
+            # --- Preparación de Datos ---
+
+            print("\nCaptura de la columna nombre y edad en un array bidimensional:\n")
+            # Convertir las columnas 'NOMBRE' y 'EDAD' en una matriz de NumPy
+            matriz_nombre_edad = df[["NOMBRE", "EDAD"]].to_numpy()
+            print(matriz_nombre_edad)
+
+            # --- Cálculo Matemático ---
+
+            # Calcular el promedio de las edades
+            # matriz_nombre_edad[:, 1] selecciona todas las filas (:) de la segunda columna (1, que es 'EDAD')
+            print("\nPromedio de edades:", np.mean(matriz_nombre_edad[:, 1]))
+
+            # --- Generación de Gráfico ---
+
+            print("\nGrafico de nombre segun edad")
+
+            # Configuración inicial del gráfico
+            fig, ax = plt.subplots()
+
+            # Crear un array de números espaciados linealmente (parece ser usado para el eje X, aunque la matriz se usa luego)
+            x = np.linspace(0, 60, 1000)
+
+            # Asignación de datos a los ejes X e Y desde la matriz
+            # X toma la primera columna (0, que es 'NOMBRE')
+            x = matriz_nombre_edad[:, 0]
+            # Y toma la segunda columna (1, que es 'EDAD')
+            y = matriz_nombre_edad[:, 1]
+
+            # Dibujar el gráfico de dispersión (scatter plot)
+            ax.scatter(x, y, s=100, color='blue', alpha=0.3)
+
+            # Dibujar una línea (plot) que parece incorrectamente definida en el código original, pero aquí se mantiene la sintaxis
+            # Podría ser un error en el código de origen, ya que usa variables de dispersión para una línea y etiqueta mal el eje Y
+            # Lo ajusto para que grafique el mismo par (x, y) como línea para evitar un error, aunque sea redundante.
+            plt.plot(x, y, label="edad")
+
+            # Mostrar cuadrícula
+            plt.grid(True)
+
+            # Añadir elementos al gráfico
+            plt.title("Grafico de nombre segun edad")
+            plt.legend()
+            plt.xlabel("Nombres")
+            plt.ylabel("Edades")
+
+            # Mostrar el gráfico
+            plt.show()
+            
+            ####################################
+            #Realizar la media, mediana y una grafica de puntos con el apellido paterno y la altura
+            matriz_nombre_edad = df[["NOMBRE", "EDAD"]].to_numpy()
+            print(matriz_nombre_edad)
+            print("\nPromedio de edades:", np.mean(matriz_nombre_edad[:, 1]))
+            
+            print("\nGrafico de nombre segun edad")
+            fig, ax = plt.subplots()
+            x = np.linspace(0, 60, 1000)
+            x = matriz_nombre_edad[:, 0]
+            y = matriz_nombre_edad[:, 1]
+            
+            ax.scatter(x, y)
+            plt.plot(x, y, label="edad", marker='o',linestyle='')
+            plt.grid(True)
+            
+            plt.title("Grafico de nombre segun edad")
+            plt.legend()
+            plt.xlabel("Nombres")
+            plt.ylabel("Edades")
+            plt.show()
+            #########################################
+            # --- 1. CONFIGURACIÓN INICIAL Y LECTURA DE DATOS ---
+
+            print("\n--- REALIZANDO CÁLCULOS Y GRÁFICO DE ALTURA ---")
+            df = pd.read_excel('DATA1.xlsx')
+            print("\n--- CÁLCULOS ESTADÍSTICOS DE ALTURA ---")
+            media_altura = df['ALTURA'].mean()
+            mediana_altura = df['ALTURA'].median()
+
+            print(f"Media (Promedio) de la altura: {media_altura:.2f}")
+            print(f"Mediana de la altura: {mediana_altura:.2f}")
+            print("\n--- GRÁFICO DE PUNTOS DE APELLIDO PATERNO VS ALTURA ---")
+
+            x_apellidos = df['APELLIDO_P'] 
+            y_alturas = df['ALTURA']      
+            fig, ax = plt.subplots(figsize=(10, 6))
+            ax.scatter(
+                x_apellidos,
+                y_alturas,
+                s=150,                
+                color='green',        
+                alpha=0.7,            
+                edgecolors='black'    
+            )
+
+            plt.xticks(rotation=45, ha='right')
+            plt.title("Gráfico de Altura según Apellido Paterno")
+            plt.xlabel("Apellido Paterno")
+            plt.ylabel("Altura (unidades del archivo)")
+            plt.grid(axis='y', linestyle='--')
+            plt.tight_layout() 
+            plt.show()
+            #################################################
+            print("\nGRAFICOS ESTADISTICOS de ARCHIVO EXCEL\n")
+
+           
+            df = pd.read_excel('DATA1.xlsx')
+
+
+            print("\nCaptura de la columna nombre y edad en un array bidimensional:\n")
+            matriz_nombre_edad = df[["NOMBRE", "EDAD"]].to_numpy()
+            print(matriz_nombre_edad)
+
+            print("GRAFICO DE PASTEL por RANGO DE EDADES")
+
+            
+            nombres = matriz_nombre_edad[:, 0]
+            edades = matriz_nombre_edad[:, 1]
+
+            plt.pie(edades, labels=nombres, autopct='%1.1f%%')
+
+            
+            plt.legend(loc="upper right", bbox_to_anchor=(1.2, 1.15))
+            plt.title("GRAFICO DE PASTEL DE EDADES")
+            plt.show()
+           ############ 
+           #Realizar el grafico de un pastel con el apellido paterno y la altura
+            
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
         case _ :
             print("opcion no valida")
 
